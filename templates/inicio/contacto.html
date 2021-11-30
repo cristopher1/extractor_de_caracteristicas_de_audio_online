@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block block1 %}
+<!-- Team members section-->
+<section class="py-5 bg-light">
+    <div class="container px-5 my-5">
+        <div class="text-center">
+            <h2 class="fw-bolder">Contacto</h2>
+            <p class="lead fw-normal text-muted mb-5">Aplicación desarrollada para el ramo "Taller de proyectos web en python"</p>
+        </div>
+        <div class="row gx-5 row-cols-1 row-cols-sm-2 row-cols-xl-4 justify-content-center">
+            <div class="col mb-5 mb-5 mb-xl-0">
+                <div class="text-center">
+                    <img class="img-fluid rounded-circle mb-4 px-4" src="{% static 'inicio/assets/autor.png' %}" />
+                    <h5 class="fw-bolder">Cristopher Jiménez</h5>
+                    <div class="fst-italic text-muted">Desarrollador &middot; Equipo 11</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<div class="container px-5 text-center">
+    <!-- Contact cards-->
+    <div class="row gx-5 row-cols-2 row-cols-lg-3 py-5">
+        <div class="col">
+            <a class="text-decoration-none" target="_blank" href="https://www.linkedin.com/in/cristopherjimenez/">
+            <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"><i class="bi bi-linkedin"></i></div>
+            <div class="h5 mb-2 text-dark">Linkedin</div>
+            <p class="text-muted mb-0">Mira el perfil en linkedin.</p>
+            </a>
+        </div>
+        <div class="col">
+            <a class="text-decoration-none" target="_blank" href="https://gitlab.labcomp.cl/cljimene">
+            <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"><i class="bi bi-github"></i></div>
+            <div class="h5 mb-2 text-dark">Gitlab</div>
+            <p class="text-muted mb-0">Visita la cuenta de gitlab.</p>
+            </a>
+        </div>
+        <div class="col">
+            <a class="text-decoration-none" href="mailto:cristopher.jimene.13@sansano.usm.cl?subject=Duda%20aplicación%20desarrollo%20web%20python">
+            <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"><i class="bi bi-envelope"></i></div>
+            <div class="h5 mb-2 text-dark">Email</div>
+            <p class="text-muted mb-0">¿Tienes dudas sobre la aplicación?. Contáctate con el desarrollador.</p>
+            </a>
+        </div>
+    </div>
+</div>
+{% endblock %}

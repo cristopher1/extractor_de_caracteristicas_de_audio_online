@@ -1,0 +1,38 @@
+{% load static %}
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header d-block">
+          <h5 class="modal-title text-center" id="exampleModalLabel">Descargar resultado como</h5>
+        </div>
+        <div class="modal-body">
+            <div class="row p-5 m-5">
+                <div class="col text-start">
+                    <div class="row row-cols-1">
+                      <div class="col text-center">
+                        <img class="img-fluid" src="{% static 'caracteristicas/img/image_png.png' %}" />
+                      </div>
+                      <div class="col text-center">
+                        <input type="checkbox" id="png" value="png" class="form-check-input"></input>
+                      </div>
+                    </div>
+                </div>
+                <div class="col text-end">
+                  <div class="row row-cols-1">
+                    <div class="col text-center">
+                      <img class="img-fluid" src="{% static 'caracteristicas/img/image_pickle.png' %}" />
+                    </div>
+                    <div class="col text-center">
+                      <input type="checkbox" id="pickle" value="pickle" class="form-check-input"></input>
+                    </div>
+                  </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer justify-content-around">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+            <button type="button" id="descargar" class="btn btn-primary">Descargar</button>
+        </div>
+      </div>
+    </div>
+</div>

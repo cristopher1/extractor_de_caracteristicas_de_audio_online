@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block head %}
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="{% static 'descripcion/css/description_styles.css' %}" rel="stylesheet" />
+{% endblock %}
+{% block block1 %}
+    <!-- Header-->
+    <header class="bg-primary bg-gradient text-white">
+        <div class="container px-4 text-center">
+            <h1 class="fw-bolder">{{ data.titulo }}</h1>
+            <p class="lead">Esta sección lo ayudará a saber más sobre el proyecto y su modo de uso. Presione "comenzar" para iniciar sesión.</p>
+            <a class="btn btn-lg btn-light" href="{% url 'login' %}">Comenzar</a>
+        </div>
+    </header>
+    <!-- About section-->
+    <section id="about">
+        <div class="container px-4">
+            <div class="row gx-4 justify-content-center">
+                <div class="col-lg-8">
+                    {% for seccion in data.secciones %}
+                        <h4 class="pt-3 pb-3"> {{ seccion.titulo }} </h4>
+                        {% for info in seccion.info %}
+                            {% if info.descripcion %}
+                            <div class="row">
+                                <p> {{ info.descripcion }} </p>
+                            </div>
+                            {% elif info.numeracion %}
+                                <div class=" container row">
+                                    <ol>
+                                        {% for linea in info.numeracion %}
+                                            <li> {{ linea }} </li>
+                                        {% endfor %}
+                                    </ol>
+                                </div>
+                            {% endif %}
+                        {% endfor %}
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

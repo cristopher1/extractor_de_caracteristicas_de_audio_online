@@ -1,0 +1,11 @@
+{% extends 'opciones/a-formulario.html' %}
+{% block id %}view-mfcc-mel{% endblock id %}
+{% block titulo_parametros %}Parámetros de MFCCs (generados desde el espectrograma de Mel){% endblock titulo_parametros %}
+{% block hidden_value %}mfcc_mel{% endblock hidden_value %}
+{% block form %}
+    {% include 'opciones/base-form.html' with form_base=form_mfcc_mel %}
+    {% include 'opciones/base-espectrograma.html' with form_base=form_mfcc_mel %}
+    {% include 'opciones/base-mfcc.html' with form_base=form_mfcc_mel %}
+{% endblock form %}
+{% block include %}{% include 'opciones/a-paginacion_audio.html' with id_paginacion='paginacion-mfcc-mel' %}{% endblock include %}
+{% block titulo_visualizador %}Coeficientes cepstrales en la frecuencia de Mel (obtenido del espectrograma de Mel){% endblock titulo_visualizador %}

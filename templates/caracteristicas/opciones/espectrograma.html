@@ -1,0 +1,10 @@
+{% extends 'opciones/a-formulario.html' %}
+{% block id %}view-espectrograma{% endblock id %}
+{% block titulo_parametros %}Parámetros del espectrograma{% endblock titulo_parametros %}
+{% block hidden_value %}espectrograma{% endblock hidden_value %}
+{% block form %} 
+    {% include 'opciones/base-form.html' with form_base=form_espectrograma_tradicional %}
+    {% include 'opciones/base-espectrograma.html' with form_base=form_espectrograma_tradicional %}
+{% endblock form %}
+{% block include %}{% include 'opciones/a-paginacion_audio.html' with id_paginacion='paginacion-espectrograma' %}{% endblock include %}
+{% block titulo_visualizador %}Espectrograma{% endblock titulo_visualizador %}

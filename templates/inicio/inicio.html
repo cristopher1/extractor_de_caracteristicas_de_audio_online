@@ -1,0 +1,186 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block block1 %}
+<!-- Header-->
+<header class="bg-dark py-5">
+    <div class="container px-5">
+        <div class="row gx-5 align-items-center justify-content-center">
+            <div class="col-lg-8 col-xl-7 col-xxl-6">
+                <div class="my-5 text-center text-xl-start">
+                    <h1 class="display-5 fw-bolder text-white mb-2">Extractor de características de audios online</h1>
+                    <p class="lead fw-normal text-white-50 mb-4">Extraiga de manera sencilla información relevante de sus archivos de audios!</p>
+                    <div class="d-grid gap-3 d-sm-flex justify-content-sm-center justify-content-xl-start">
+                        <a class="btn btn-primary btn-lg px-4 me-sm-3" href="{% url 'login' %}">Comenzar</a>
+                        <a class="btn btn-outline-light btn-lg px-4" href="{% url 'descripcion' %}">Ver más</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-5 col-xxl-6 d-none d-xl-block text-center">
+                <div id="carouselExampleDark" class="carousel carousel-dark slide pb-5 pl-5 pr-5 pt-3 mb-5 ml-5 mr-5 mt-3" data-bs-ride="carousel">
+                    <div class="carousel-indicators">
+                        <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                        <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                        <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                    </div>
+                    <div class="carousel-inner">
+                        <div class="carousel-item active" data-bs-interval="4000">
+                        <img src="{% static 'inicio/assets/img1.png' %}" class="d-block m-auto" width="640" height="320">
+                        <div class="carousel-caption d-none d-md-block">
+                            <h5>Extraiga características de audio</h5>
+                            <p>Obtenga extracción de características.</p>
+                        </div>
+                        </div>
+                        <div class="carousel-item" data-bs-interval="4000">
+                        <img src="{% static 'inicio/assets/img2.png' %}" class="d-block m-auto" width="640" height="320">
+                        <div class="carousel-caption d-none d-md-block">
+                            <h5>Obtenga varias características</h5>
+                            <p>Espectrograma y MFCC.</p>
+                        </div>
+                        </div>
+                        <div class="carousel-item" data-bs-interval="4000">
+                        <img src="{% static 'inicio/assets/img3.png' %}" class="d-block m-auto" width="640" height="320">
+                        <div class="carousel-caption d-none d-md-block">
+                            <h5>Todo en python</h5>
+                            <p>Implementado en python.</p>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<!-- Features section-->
+<section class="py-5" id="features">
+    <div class="container px-5 my-5">
+        <div class="row gx-5">
+            <div class="col-lg-4 mb-5 mb-lg-0"><h2 class="fw-bolder mb-0">Algunas ventajas.</h2></div>
+            <div class="col-lg-8">
+                <div class="row gx-5 row-cols-1 row-cols-md-2">
+                    <div class="col mb-5 h-100">
+                        <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"><i class="bi bi-collection"></i></div>
+                        <h2 class="h5">Varias características</h2>
+                        <p class="mb-0">Puede generar espectrogramas, espectrogramas de MEL, series de tiempo de amplitud y coeficientes cepstrales en la frecuencia de MEL.</p>
+                    </div>
+                    <div class="col mb-5 h-100">
+                        <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"><i class="bi bi-building"></i></div>
+                        <h2 class="h5">Descargar Resultados</h2>
+                        <p class="mb-0">Puede descargarlos como imágenes o archivos con objetos python</p>
+                    </div>
+                    <div class="col mb-5 mb-md-0 h-100">
+                        <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"><i class="bi bi-toggles2"></i></div>
+                        <h2 class="h5">Directamente en python</h2>
+                        <p class="mb-0">Genere matrices de distribución de energía que pueden ser cargados directamente en python usando los modúlos pickle y numpy.</p>
+                    </div>
+                    <div class="col h-100">
+                        <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"><i class="bi bi-toggles2"></i></div>
+                        <h2 class="h5">Sencillo</h2>
+                        <p class="mb-0">Ajuste los parámetros necesarios y genere resultados de manera rápida y sencilla.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Blog preview section-->
+<section class="py-5">
+    <div class="container px-5 my-5">
+        <div class="row gx-5 justify-content-center">
+            <div class="col-lg-8 col-xl-6">
+                <div class="text-center">
+                    <h2 class="fw-bolder">Nuestros resultados</h2>
+                    <p class="lead fw-normal text-muted mb-5">De manera sencilla podrá tener resultados como los siguientes.</p>
+                </div>
+            </div>
+        </div>
+        <div class="row gx-5">
+            <div class="col-lg-4 mb-5">
+                <div class="card h-100 shadow border-0">
+                    <img class="card-img-top" src="{% static 'inicio/assets/espectrograma.png' %}" height="240" />
+                    <div class="card-body p-4">
+                        <div class="badge bg-primary bg-gradient rounded-pill mb-2">Imagen</div>
+                        <a class="text-decoration-none link-dark stretched-link"><h5 class="card-title mb-3">Espectrograma</h5></a>
+                        <p class="card-text mb-0">Resultado obtenido a partir de 2 seg de audio.</p>
+                    </div>
+                    <div class="card-footer p-4 pt-0 bg-transparent border-top-0">
+                        <div class="d-flex align-items-end justify-content-between">
+                            <div class="d-flex align-items-center">
+                                <i class="bi bi-file-earmark-play-fill rounded-circle me-3"></i>
+                                <div class="small">
+                                    <div class="fw-bold">Generado con audio de abejas</div>
+                                    <div class="text-muted">Extensión: mp3 &middot; Muestreo: 44100</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 mb-5">
+                <div class="card h-100 shadow border-0">
+                    <img class="card-img-top" src="{% static 'inicio/assets/espectrograma_mel.png' %}" height="240" />
+                    <div class="card-body p-4">
+                        <div class="badge bg-primary bg-gradient rounded-pill mb-2">Imagen</div>
+                        <a class="text-decoration-none link-dark stretched-link"><h5 class="card-title mb-3">Espectrograma MEL</h5></a>
+                        <p class="card-text mb-0">Resultado obtenido a partir de 2 seg de audio.</p>
+                    </div>
+                    <div class="card-footer p-4 pt-0 bg-transparent border-top-0">
+                        <div class="d-flex align-items-end justify-content-between">
+                            <div class="d-flex align-items-center">
+                                <i class="bi bi-file-earmark-play-fill rounded-circle me-3"></i>
+                                <div class="small">
+                                    <div class="fw-bold">Generado con audio de abejas</div>
+                                    <div class="text-muted">Extensión: mp3 &middot; Muestreo: 44100</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 mb-5">
+                <div class="card h-100 shadow border-0">
+                    <img class="card-img-top" src="{% static 'inicio/assets/mfcc.png' %}" height="240" />
+                    <div class="card-body p-4">
+                        <div class="badge bg-primary bg-gradient rounded-pill mb-2">Imagen</div>
+                        <a class="text-decoration-none link-dark stretched-link"><h5 class="card-title mb-3">Coeficientes cepstrales en la frecuencia de MEL</h5></a>
+                        <p class="card-text mb-0">Resultado obtenido a partir de un espectrograma de MEL con 2 seg de audio.</p>
+                    </div>
+                    <div class="card-footer p-4 pt-0 bg-transparent border-top-0">
+                        <div class="d-flex align-items-end justify-content-between">
+                            <div class="d-flex align-items-center">
+                                <i class="bi bi-file-earmark-play-fill rounded-circle me-3"></i>
+                                <div class="small">
+                                    <div class="fw-bold">Generado con audio de abejas</div>
+                                    <div class="text-muted">Extensión: mp3 &middot; Muestreo: 44100</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Call to action-->
+        <a name="registrarse"></a>
+        <aside class="bg-primary bg-gradient rounded-3 p-4 p-sm-5 mt-5">
+            <div class="d-flex align-items-center justify-content-between flex-column flex-xl-row text-center text-xl-start">
+                <div class="mb-4 mb-xl-0">
+                    <div class="fs-3 fw-bold text-white">Registrate.</div>
+                    <div class="text-white-50">Comience a usar las funcionalidades de la aplicación.</div>
+                </div>
+                <div class="ms-xl-4">
+                    <form class="text-center text-white" method="POST" action="{% url 'registro' %}">
+                        <div class="mb-3">
+                            <input type="email" class="form-control" placeholder="Correo electrónico" id="correo" name="email">
+                        </div>
+                        <div class="mb-3">
+                            <input type="password" class="form-control" placeholder="Contraseña" id="contrasenna" name="password">
+                        </div>
+                        <button class="btn btn-outline-light" id="button-newsletter" type="submit">Registrame</button>
+                        {% csrf_token %}
+                    </form>
+                </div>
+            </div>
+        </aside>
+    </div>
+</section>
+</main>
+{% endblock %}

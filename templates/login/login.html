@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block block1 %}
+<br>
+<br>
+<div class="container mt-5 mb-5 pt-5 pb-5">
+    <div class="row justify-content-center">
+      <div class="col-md-8">
+        <div class="card-group mb-0">
+          <div class="card p-4">
+            <div class="card-body">
+              <form method="POST" action="{% url 'login' %}">
+                <h1>Iniciar sesión</h1>
+                <p class="text-muted">Ingresa tus datos e inicia sesión</p>
+                <div class="input-group mb-3">
+                    <span class="input-group-text"><i class="bi bi-person-fill"></i></span>
+                    <input type="email" class="form-control" placeholder="Correo electrónico" name="email">
+                </div>
+                <div class="input-group mb-4">
+                    <span class="input-group-text"><i class="bi bi-lock-fill"></i></span>
+                    <input type="password" class="form-control" placeholder="Contraseña" name="password">
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                    <button type="submit" class="btn btn-primary px-4">Iniciar sesión</button>
+                    </div>
+                </div>
+                {% csrf_token %}
+              </form>
+            </div>
+          </div>
+          <div class="card text-white bg-primary py-5 d-md-down-none" style="width:44%">
+            <div class="card-body text-center">
+              <div>
+                <h2>¿Estás registrado?</h2>
+                <p>Crea una cuenta e inicia sesión para acceder a las funcionalidades de la aplicación.</p>
+                <a href="{% url 'inicio' %}#registrarse" class="btn btn-primary active mt-3">Registrarme ahora</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

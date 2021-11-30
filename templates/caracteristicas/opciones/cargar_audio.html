@@ -1,0 +1,18 @@
+<div class="menu" id="view-cargar-audio">
+    <h5 class="text-center pb-3 mb-3">Seleccione un audio y cárguelo en el servidor</h5>
+    <div class="row">
+        <div class="col-lg-6">
+            <form id="form_audio" method="POST" action="{% url 'api_audios' %}" enctype="multipart/form-data">
+                <input type="file" class="form-control" id="audio_cargado" name="audio">
+                <div class="row">
+                    <div class="col-6">
+                        <button type="submit" class="btn btn-primary px-4" name="cargar">Cargar</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="col-lg-6">
+            <audio id="reproductor" controls></audio>
+        </div>
+    </div>
+</div>

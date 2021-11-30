@@ -1,0 +1,69 @@
+{
+    "titulo": "Información general",
+    "secciones": [
+        {
+            "titulo": "¿De qué trata este proyecto?",
+            "info": [
+                {
+                    "descripcion": [
+                        "Trata sobre el proceso de extracción de características de archivos de audios.",
+                        "Pensado en aquellas personas que necesitan entrenar redes neuronales convolucionales (CNNs) clasificadoras de audios,",
+                        "basadas por ejemplo en imagénes de espectrogramas o directamente usando las matrices de distribución de energía,",
+                        "pero no tienen el conocimiento o herramientas para generarlos."
+                    ]
+                }
+            ]
+        },
+        {
+            "titulo": "¿En qué consiste?",
+            "info": [
+                {
+                    "descripcion": [
+                        "Consiste en una aplicación web, donde los usuarios deberán registrarse en ella",
+                        "para acceder a las funcionalidades. Este, podrá elegir algunas características a extraer, por ejemplo:",
+                        "espectrogramas, espectrogramas de MEL, amplitud o coeficientes cepstrales de MEL (MFCCs). Luego de ello,",
+                        "deberá cargar un archivo de audio en la aplicación en formato .wav o .mp3, ajustará algunos parámetros usados",
+                        "por los extractores de características que generarán una imagen con el contenido deseado, para finalmente descargar el resultado",
+                        "como una imagen o un archivo generado por el módulo pickle de python."
+                    ]
+                },
+                {
+                    "descripcion": [
+                        "Al usuario, también se le dará la opción de guardar los archivos de audios cargados y posiblemente los resultados obtenidos en la aplicación."
+                    ]
+                }
+            ]
+        },
+        {
+            "titulo": "Navegación",
+            "info": [
+                {
+                    "descripcion": ["La barra de navegación de la aplicación, contiene tres opciones:"]
+                },
+                {
+                    "numeracion": [
+                        "Inicio: Redirige a la vista de inicio de la página.",
+                        "Descripción: Corresponde a esta sección.",
+                        "Características: Esta sección muestra los tipos de características que pueden ser extraidos de un archivo de audio."
+                    ]
+                }
+            ]
+        },
+        {
+            "titulo": "¿Cómo extraer características?",
+            "info": [
+                {
+                    "numeracion": [
+                        "Inicie sesión, en caso de no estar registrado, primero registrese.",
+                        "En la barra de navegación pulse Características.",
+                        "A continuación, podrá ver varias opciones que indican el tipo de característica a extraer, apriete el botón ¡Comenzar! para iniciar el proceso.",
+                        "Cargue su archivo de audio, en formato .wav o .mp3.",
+                        "Ajuste los parámetros solicitados.",
+                        "Descargue los resultados en los formatos establecidos.",
+                        "De ser necesario guarde el archivo de audio y/o los resultados en la aplicación."
+                    ]
+                }
+            ]
+        }
+    ]
+}
