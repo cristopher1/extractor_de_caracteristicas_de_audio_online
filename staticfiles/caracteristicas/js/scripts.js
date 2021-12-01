@@ -127,6 +127,7 @@ const enviar_data_caracteristica = (form) => {
 }
 
 window.addEventListener('DOMContentLoaded', event => {
+    sessionStorage.clear();
     $.each($('div.menu form'), (index, form) => {
         enviar_data_caracteristica(form);
     });
@@ -145,12 +146,14 @@ window.addEventListener('DOMContentLoaded', event => {
             const view_actual = obtener_view_actual();
             if (view_actual !== 'view-cargar-audio') {
                 const url = sessionStorage.getItem(`${view_actual}-${tipo}`);
-                const a = document.createElement('a');
-                a.style.display = 'none';
-                a.href = url;
-                a.download = `resultado.${tipo}`;
-                document.body.appendChild(a);
-                a.click();
+                if (url) {
+                    const a = document.createElement('a');
+                    a.style.display = 'none';
+                    a.href = url;
+                    a.download = `resultado.${tipo}`;
+                    document.body.appendChild(a);
+                    a.click();
+                }
             }
         } 
         [$('input#png'), $('input#pickle')].forEach((value, index) => {
