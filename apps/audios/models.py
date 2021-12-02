@@ -9,6 +9,7 @@ def ruta_archivo(instance, filename):
 
 class OverWriteStorage(FileSystemStorage):
     def _save(self, name, content):
+        print(name)
         nombre_archivo = '{0}\{1}'.format(name.split('\\')[0], content.name)
         if self.exists(nombre_archivo):
             self.delete(nombre_archivo)
