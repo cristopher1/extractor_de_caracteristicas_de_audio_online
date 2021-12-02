@@ -2,7 +2,6 @@ from django.shortcuts import render
 from django.views.generic import View
 from apps.audios.models import *
 from apps.caracteristicas.forms import *
-from project.settings import MEDIA_ROOT
 from .extraccionCaracteristicas.backend import *
 from rest_framework import status
 from rest_framework.views import APIView
@@ -48,8 +47,7 @@ class CaracteristicaAPI(APIView):
             form = form(request.POST)
             if form.is_valid():
                 info_audio = Audio.objects.get(nombre=form['audio'].value(), usuario=usuario)
-                ruta_archivo = info_audio.archivo
-                ruta_audio = MEDIA_ROOT / ruta_archivo
+                ruta_audio = info_audio.archivo.path
                 tasa_muestreo = int(form['tasa_muestreo'].value())
                 kwargs = generar_data(form)
                 audio = cargar_audio(ruta_audio, tasa_muestreo)
@@ -77,5 +75,6 @@ class CaracteristicaAPI(APIView):
                 return Response(status=status.HTTP_400_BAD_REQUEST)
         except Audio.DoesNotExist:
             return Response(status=status.HTTP_404_NOT_FOUND)
-        except BaseException:
+        except BaseException as error:
+            print(error)
             return Response(status=status.HTTP_500_INTERNAL_SERVER_ERROR)
