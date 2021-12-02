@@ -50,7 +50,8 @@ class AudioAPI(APIView):
             return Response(status=status.HTTP_400_BAD_REQUEST)
         except serializer_model(AudioSerializer).DoesNotExist:
             return Response(status=status.HTTP_404_NOT_FOUND)            
-        except:
+        except Exception as error:
+            print(error)
             return Response(status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
 class AudioPagination(PageNumberPagination):

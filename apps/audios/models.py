@@ -8,12 +8,10 @@ def ruta_archivo(instance, filename):
     return '{0}/{1}'.format(instance.usuario.email, filename)
 
 class OverWriteStorage(FileSystemStorage):
-    def _save(self, name, content):
-        print(name)
-        nombre_archivo = '{0}\{1}'.format(name.split('\\')[0], content.name)
-        if self.exists(nombre_archivo):
-            self.delete(nombre_archivo)
-        return super(OverWriteStorage, self)._save(nombre_archivo, content)
+    def get_available_name(self, name, max_length=0):
+        if self.exists(name):
+            self.delete(name)
+        return name
     
 # Create your models here.
 class Audio(models.Model):
