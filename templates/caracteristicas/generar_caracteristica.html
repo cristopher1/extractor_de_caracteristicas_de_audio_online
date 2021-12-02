@@ -71,12 +71,19 @@
             {% csrf_token %}
             {% include 'opciones/descargar_resultado.html' %}
             <div class="container-fluid p-5 my-5">
-                {% include 'opciones/cargar_audio.html' %}
-                {% include 'opciones/serie_tiempo_amplitud.html' %}
-                {% include 'opciones/espectrograma.html' %}
-                {% include 'opciones/espectrograma_mel.html' %}
-                {% include 'opciones/mfcc_serie_tiempo_amplitud.html' %}
-                {% include 'opciones/mfcc_espectrograma_mel.html' %}
+                <div class="row">
+                    <div class="col-lg-6">
+                        {% include 'opciones/a-paginacion_audio.html' %}
+                    </div>
+                    <div class="col-lg-6">
+                        {% include 'opciones/cargar_audio.html' %}
+                        {% include 'opciones/serie_tiempo_amplitud.html' %}
+                        {% include 'opciones/espectrograma.html' %}
+                        {% include 'opciones/espectrograma_mel.html' %}
+                        {% include 'opciones/mfcc_serie_tiempo_amplitud.html' %}
+                        {% include 'opciones/mfcc_espectrograma_mel.html' %}
+                    </div>
+                </div>
             </div>
         </main>
     </div>

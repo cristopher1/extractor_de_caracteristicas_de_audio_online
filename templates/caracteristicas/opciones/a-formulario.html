@@ -1,31 +1,22 @@
 <div class="menu" id="{% block id %} {% endblock id %}">
-    <div class="row">
-        <div class="col-lg-6">
-            {% block include %} {% endblock include %}
-        </div>
-        <div class="col-lg-6">
-            <div class="mb-5">
-                <h5 class="text-center pb-2 mb-2">{% block titulo_parametros %} {% endblock titulo_parametros %}</h5>
-                <form method="POST" action="{% url 'api_caracteristicas' %}" enctype="multipart/form-data">
-                    <input type="hidden" value="{% block hidden_value %} {% endblock hidden_value %}" name="tipo">
-                    <div class="row row-cols-2">
-                        {% block form %} {% endblock form %}
-                    </div>
-                    <div class="row">
-                        <div class="col-6">
-                        <button type="submit" class="btn btn-primary px-4 generar">Generar</button>
-                        </div>
-                    </div>
-                </form>
+    <div class="mb-5">
+        <h5 class="text-center pb-2 mb-2">{% block titulo_parametros %} {% endblock titulo_parametros %}</h5>
+        <form method="POST" action="{% url 'api_caracteristicas' %}" enctype="multipart/form-data">
+            <input type="hidden" value="{% block hidden_value %} {% endblock hidden_value %}" name="tipo">
+            <div class="row row-cols-2">
+                {% block form %} {% endblock form %}
             </div>
-            <div class="card mb-4">
-                <div class="card-header">
-                    <i class="fas fa-chart-bar me-1"></i>
-                    {% block titulo_visualizador %} {% endblock titulo_visualizador %}
-                </div>
-                <div class="card-body"><img id="visualizador" width="100%" height="100%"></img></div>
-                <div class="card-footer small text-muted text-center">Visualizador de resultados</div>
+            <div class="p-2 m-2 text-center">
+                <button type="submit" class="btn btn-primary px-4 generar">Extraer característica</button>
             </div>
+        </form>
+    </div>
+    <div class="card mb-4">
+        <div class="card-header">
+            <i class="fas fa-chart-bar me-1"></i>
+            {% block titulo_visualizador %} {% endblock titulo_visualizador %}
         </div>
+        <div class="card-body"><img id="visualizador" width="100%" height="100%"></img></div>
+        <div class="card-footer small text-muted text-center">Visualizador de resultados</div>
     </div>
 </div>

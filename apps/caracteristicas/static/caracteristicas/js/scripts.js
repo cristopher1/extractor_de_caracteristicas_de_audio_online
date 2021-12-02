@@ -32,26 +32,28 @@ const mostrar_menu = (selector) => {
     }
  }
 
-const cargar_paginacion = (id_paginacion_element, api_url) => {
-    const tabla = $(`#${id_paginacion_element}`)
-    .DataTable({
-        scrollY: '200px',
-        scrollCollapse: true,
-        order: [[1, 'desc']],
-        ajax: {
-            url: api_url,
-            dataSrc: 'results'
-        },
-        columns: [
-            { data: 'nombre' },
-            { 
+const crear_paginacion = (id_paginacion, api_url) => {
+    const tabla = $(`#${id_paginacion}`)
+      .DataTable({
+          scrollY: '200px',
+          scrollCollapse: true,
+          order: [[1, 'desc']],
+          ajax: {
+              url: api_url,
+              dataSrc: 'results'
+          },
+          columns: [
+              { 
+                  data: 'nombre',
+              },
+              { 
                 data: 'fecha',
                 render: (data, type) => {
                     return new Date(data).toLocaleString();
-                }
-            },
-        ],
-    });
+                },
+              },
+            ],
+        });
     tabla.on('click', 'tbody > tr', (event) => {
         //Si se presiona el elemento td, se obtiene el tr contenedor
         if(event.target.nodeName.toLowerCase()) {
@@ -62,13 +64,14 @@ const cargar_paginacion = (id_paginacion_element, api_url) => {
             input_audio.val(nombre_archivo);
         }
     });
+    return tabla;
 }
 
 const obtener_csrftoken = () => {
      return document.getElementsByName('csrfmiddlewaretoken')[0].value;
 }
 
-const enviar_data_caracteristica = (form) => {
+const enviar_formulario_caracteristica = (form) => {
     form.addEventListener('submit', (event) => {
         event.preventDefault();
         const data = new FormData(form);
@@ -87,7 +90,7 @@ const enviar_data_caracteristica = (form) => {
             cache: false,
             beforeSend: (jqXHR, settings) => {
                 Swal.fire({
-                    title: 'Generando características',
+                    title: 'Extrayendo característica',
                     didOpen: () => {
                     Swal.showLoading()
                     }
@@ -97,11 +100,10 @@ const enviar_data_caracteristica = (form) => {
         .done(async (response) => {
             const view_actual = obtener_view_actual();
             const img = $(`div#${view_actual} div div img#visualizador`);
-            const png = response.png
-            const pickle = response.pickle
+            const { png, pickle } = response;
             const fetchResponsePng = await fetch(`data:image/png;base64,${png}`);
-            const blobPng = await fetchResponsePng.blob();
             const fetchResponsePickle = await fetch(`data:image/png;base64,${pickle}`);
+            const blobPng = await fetchResponsePng.blob();
             const blobPickle = await fetchResponsePickle.blob();
             const urlPickleAnterior = sessionStorage.getItem(`${view_actual}-pickle`);
             if (urlPickleAnterior) {
@@ -126,43 +128,57 @@ const enviar_data_caracteristica = (form) => {
     })
 }
 
+const descargar_archivo = (tipo) => {
+    const view_actual = obtener_view_actual();
+    if (view_actual !== 'view-cargar-audio') {
+        const url = sessionStorage.getItem(`${view_actual}-${tipo}`);
+        if (url) {
+            const a = document.createElement('a');
+            a.style.display = 'none';
+            a.href = url;
+            a.download = `resultado.${tipo}`;
+            document.body.appendChild(a);
+            a.click();
+        }
+    }
+}
+
+/*
+    Se agregan funcionalidades a los elementos del DOM
+*/
+
 window.addEventListener('DOMContentLoaded', event => {
+    //limpiar los archivos .png y .pickle que quedan luego de recargar la página
     sessionStorage.clear();
-    $.each($('div.menu form'), (index, form) => {
-        enviar_data_caracteristica(form);
+    
+    //Cambia el comportamiento del formulario de características, para enviarlo a la api
+    $.each($('div.menu:not(#view-cargar-audio) form'), (index, form) => {
+        enviar_formulario_caracteristica(form);
     });
+
+    //Se cargan las animaciones del menú, para ocultar y mostrar las opciones del menú
     $.each($('.menu-opcion'), (index, option_menu) => {
         const id_menu_element = $(option_menu).attr('id');
         const id_view_element = `view-${id_menu_element}`;
-        const id_paginacion_element = `paginacion-${id_menu_element}`;
-        const api_url = $('#api-audios').val();
         cargar_menu(option_menu, id_view_element);
-        cargar_paginacion(id_paginacion_element, api_url);
     });
 
+    //Se crea la tabla con paginación
+    const id_paginacion = 'paginacion';
+    const api_url = $('#api-audios').val();
+    const tabla = crear_paginacion(id_paginacion, api_url);
+
+    //Se asigna la funcionalidad de descarga de archivos
     const descargar = $('#descargar');
     descargar.bind('click', (event) => {
-        const descarga = (tipo) => {
-            const view_actual = obtener_view_actual();
-            if (view_actual !== 'view-cargar-audio') {
-                const url = sessionStorage.getItem(`${view_actual}-${tipo}`);
-                if (url) {
-                    const a = document.createElement('a');
-                    a.style.display = 'none';
-                    a.href = url;
-                    a.download = `resultado.${tipo}`;
-                    document.body.appendChild(a);
-                    a.click();
-                }
-            }
-        } 
         [$('input#png'), $('input#pickle')].forEach((value, index) => {
             if (value.prop('checked')) {
-                descarga(value.attr('value'));
+                descargar_archivo(value.attr('value'));
             }
         });
     });
 
+    //Se modifica el comportamiento del formulario de carga de audio, para enviar los datos a la api
     const form_audio = document.getElementById('form_audio');
     form_audio.addEventListener('submit', (event) => {
         event.preventDefault();
@@ -190,13 +206,15 @@ window.addEventListener('DOMContentLoaded', event => {
                         }
                     });
                 }
-            }).done(function(response){            
+            }).done(function(response){
+                Swal.close();            
                 Swal.fire({
                     icon: 'success',
                     title: 'Exito!',
                     text: 'El archivo se ha cargado.',
                     showConfirmButton: false,
                   });
+                tabla.ajax.reload();
             });
         }
 
@@ -238,6 +256,7 @@ window.addEventListener('DOMContentLoaded', event => {
         });
     });
 
+    //Se agrega vista previa del audio (escuchar audio previo al envio)
     const input_audio = document.getElementById('audio_cargado');
     input_audio.addEventListener('change', (event) => {
         reproductor_audio = document.getElementById('reproductor');

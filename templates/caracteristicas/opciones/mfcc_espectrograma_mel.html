@@ -7,5 +7,4 @@
     {% include 'opciones/base-espectrograma.html' with form_base=form_mfcc_mel %}
     {% include 'opciones/base-mfcc.html' with form_base=form_mfcc_mel %}
 {% endblock form %}
-{% block include %}{% include 'opciones/a-paginacion_audio.html' with id_paginacion='paginacion-mfcc-mel' %}{% endblock include %}
 {% block titulo_visualizador %}Coeficientes cepstrales en la frecuencia de Mel (obtenido del espectrograma de Mel){% endblock titulo_visualizador %}

@@ -29,7 +29,7 @@ class AudioAPI(APIView):
             return Response(status=status.HTTP_409_CONFLICT)
         except ValidationError:
             return Response(status=status.HTTP_400_BAD_REQUEST)
-        except Audio.DoesNotExist:
+        except serializer_model(AudioSerializer).DoesNotExist:
             serialize = AudioSerializer(data=audio_data)
             serialize.is_valid(raise_exception=True)
             serialize.save()
@@ -48,7 +48,7 @@ class AudioAPI(APIView):
             return Response(status=status.HTTP_200_OK)         
         except ValidationError:
             return Response(status=status.HTTP_400_BAD_REQUEST)
-        except Audio.DoesNotExist:
+        except serializer_model(AudioSerializer).DoesNotExist:
             return Response(status=status.HTTP_404_NOT_FOUND)            
         except:
             return Response(status=status.HTTP_500_INTERNAL_SERVER_ERROR)
