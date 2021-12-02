@@ -46,8 +46,10 @@ class CaracteristicaAPI(APIView):
             tipo = request.POST['tipo']
             form, titulo = Info[tipo]
             form = form(request.POST)
-            if form.is_valid() and Audio.objects.get(nombre=form['audio'].value(), usuario=usuario):
-                ruta_audio = MEDIA_ROOT / usuario.get_username() / form['audio'].value()
+            if form.is_valid():
+                info_audio = Audio.objects.get(nombre=form['audio'].value(), usuario=usuario)
+                ruta_archivo = info_audio.archivo
+                ruta_audio = MEDIA_ROOT / ruta_archivo
                 tasa_muestreo = int(form['tasa_muestreo'].value())
                 kwargs = generar_data(form)
                 audio = cargar_audio(ruta_audio, tasa_muestreo)
@@ -75,6 +77,5 @@ class CaracteristicaAPI(APIView):
                 return Response(status=status.HTTP_400_BAD_REQUEST)
         except Audio.DoesNotExist:
             return Response(status=status.HTTP_404_NOT_FOUND)
-        except Exception as error:
-            print(error)
+        except BaseException:
             return Response(status=status.HTTP_500_INTERNAL_SERVER_ERROR)

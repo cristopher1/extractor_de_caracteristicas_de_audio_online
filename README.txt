@@ -2,9 +2,9 @@
 
 1. Registrese en la app
 2. Inicie sesión
-3. Cargue audios (implementado, pero no se verifica que el archivo sea de audio y no lee archivo .mp3)
+3. Cargue audios (implementado, pero no se verifica que el archivo sea de audio.)
 4. Modifique atributos
-5. Genere caracteristicas
+5. Genere caracteristicas (procesa archivos .mp3 y .wav,)
 6. Descargue resultados
 
 Inicialmente guardar los resultados en el servidor era una opción, pero posiblemente no genera mucho valor para

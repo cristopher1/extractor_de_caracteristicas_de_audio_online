@@ -34,7 +34,7 @@ class AudioAPI(APIView):
             serialize.is_valid(raise_exception=True)
             serialize.save()
             return Response(status=status.HTTP_200_OK)
-        except:
+        except Exception as error:
             return Response(status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
     def put(self, request):
