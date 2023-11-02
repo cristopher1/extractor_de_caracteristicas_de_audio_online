@@ -1,0 +1,11 @@
+version: "3.4"
+
+services:
+  app:
+    build:
+      context: "${APP_SRC}"
+      target: "${APP_ENVIRONMENT}"
+    env_file:
+      - "${APP_SRC}/.env"
+    ports:
+      - "${APP_HOST_PORT}:3000"
